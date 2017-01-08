@@ -15,7 +15,7 @@ api = Twython(CONSUMER_KEY,CONSUMER_SECRET,ACCESS_KEY,ACCESS_SECRET)
 
 
 
-def my_callback(channel):
+def on_positive_edge(channel):
     #time stamp
     timestamp = 'date +%F_%H:%M:%S'
     current_time=os.popen(timestamp).readline().strip()
@@ -38,7 +38,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.OUT)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-GPIO.add_event_detect(21, GPIO.RISING, callback=my_callback, bouncetime=1000)
+GPIO.add_event_detect(21, GPIO.RISING, callback=on_positive_edge, bouncetime=1000)
 
 ledstate = GPIO.LOW
 
