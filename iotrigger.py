@@ -9,9 +9,9 @@ from twython import Twython
 #Twitter API 
 CONSUMER_KEY =''
 CONSUMER_SECRET =''
-ACCESS_KEY =''
+ACCESS_TOKEN =''
 ACCESS_SECRET =''
-api = Twython(CONSUMER_KEY,CONSUMER_SECRET,ACCESS_KEY,ACCESS_SECRET)
+api = Twython(CONSUMER_KEY,CONSUMER_SECRET,ACCESS_TOKEN,ACCESS_SECRET)
 
 
 
@@ -32,13 +32,13 @@ def on_positive_edge(channel):
         GPIO.output(25, ledstate)
         api.send_direct_message(text='CPU:'+temp+'deg @'+current_time+'  : by Python script',screen_name='mqttand')
 
-
+trigger_input=21
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(25, GPIO.OUT)
-GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(trigger_input, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-GPIO.add_event_detect(21, GPIO.RISING, callback=on_positive_edge, bouncetime=1000)
+GPIO.add_event_detect(trigger_input, GPIO.RISING, callback=on_positive_edge, bouncetime=1000)
 
 ledstate = GPIO.LOW
 
