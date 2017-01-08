@@ -27,7 +27,7 @@ def on_positive_edge(channel):
     temp = line.split('=')[1].split("'")[0]
 
     global ledstate
-    if channel == 21:
+    if channel == trigger_input:
         ledstate = not ledstate
         GPIO.output(25, ledstate)
         api.send_direct_message(text='CPU:'+temp+'deg @'+current_time+'  : by Python script',screen_name='mqttand')
