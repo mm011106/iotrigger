@@ -1,2 +1,4 @@
 # iotrigger
-send direct message by IO change
+Raspberry Pi のIOの変化によってtweet するスクリプト
+twython必要
+
